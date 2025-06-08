@@ -213,7 +213,7 @@ nav {
   right: 0;
   height: 75%;
   width: 100%;
-  background-image: url("../assets/about-bg.jpg");
+  background-image: url("assets/about-bg.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
