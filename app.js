@@ -53,7 +53,6 @@ ScrollReveal().reveal(".news__card", {
   interval: 500,
 });
 
-
 // Booking form submission
 const bookingForm = document.getElementById("bookingForm");
 
@@ -65,7 +64,8 @@ if (bookingForm) {
     const bookingData = Object.fromEntries(formData.entries());
 
     try {
-      const res = await fetch("/submit-booking", {
+      // Use the full backend URL to ensure the request goes to your Node.js server
+      const res = await fetch("http://localhost:5501/submit-booking", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
