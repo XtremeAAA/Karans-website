@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin - View Bookings</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <h1 style="text-align: center;">Submitted Bookings</h1>
+  <div style="padding: 20px;">
+    <table border="1" width="100%" cellpadding="10">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Mobile</th>
+          <th>Address</th>
+          <th>Guests</th>
+          <th>Rooms</th>
+          <th>Arrival</th>
+          <th>Departure</th>
+          <th>Dietary</th>
+          <th>Comment</th>
+        </tr>
+      </thead>
+      <tbody id="booking-table-body">
+        <!-- Bookings will go here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Fetch bookings from server
+    fetch("/admin/bookings")
+      .then(res => res.json())
+      .then(bookings => {
+        const tableBody = document.getElementById("booking-table-body");
+        bookings.forEach(booking => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${booking.name}</td>
+            <td>${booking.email}</td>
+            <td>${booking.mobile}</td>
+            <td>${booking.address}</td>
+            <td>${booking.guests}</td>
+            <td>${booking.rooms}</td>
+            <td>${booking.arrival}</td>
+            <td>${booking.departure}</td>
+            <td>${booking.dietary}</td>
+            <td>${booking.comment}</td>
+          `;
+          tableBody.appendChild(row);
+        });
+      })
+      .catch(error => {
+        console.error("Error fetching bookings:", error);
+      });
+  </script>
+</body>
+</html>
